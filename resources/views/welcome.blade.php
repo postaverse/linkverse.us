@@ -12,6 +12,18 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRF Token for security -->
 
+    <!-- SEO -->
+    <meta name="description" content="Linkverse is a free URL shortening service.">
+    <meta name="keywords" content="linkverse, url shortener, free url shortener, link shortener, shorten link, shorten url, zander, zander lewis, postaverse, tools, tool, postaverse tool, postaverse tools, zander tool, zander tools, zander lewis tools, zander lewis tool">
+    <meta name="author" content="Zander Lewis">
+    <meta name="robots" content="index, follow">
+    <meta name="og:title" content="Linkverse">
+    <meta name="og:description" content="Linkverse is a free URL shortening service.">
+    <meta name="og:sitename" content="Linkverse">
+    <meta name="og:type" content="website">
+    <meta name="og:url" content="https://linkverse.us">
+    <meta name="og:locale" content="en_US">
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
