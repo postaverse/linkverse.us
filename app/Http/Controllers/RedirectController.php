@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\ShortenedUrl; // Assuming you have a ShortenedUrl model
+use App\Models\ShortenedUrl;
 
 class RedirectController extends Controller
 {
@@ -13,6 +12,8 @@ class RedirectController extends Controller
         $url = ShortenedUrl::where('short_code', $code)->first();
 
         if ($url) {
+            // Increment the visit count
+            $url->increment('hits');
             // Redirect to the original URL
             return redirect()->away($url->original_url);
         } else {

@@ -8,6 +8,21 @@ use Illuminate\Support\Str;
 
 class ShortenController extends Controller
 {
+
+    protected $dates = ['created_at', 'updated_at'];
+
+    public function getTopVisitedShortCodes()
+    {
+        $topVisited = ShortenedUrl::orderBy('hits', 'DESC')->take(10)->get(['short_code', 'hits', 'original_url']);
+        return view('welcome', compact('topVisited'));
+    }
+
+    public function getRecentlyCreatedShortCodes()
+    {
+        $recentlyCreated = ShortenedUrl::orderBy('created_at', 'DESC')->take(10)->get(['short_code', 'original_url', 'created_at']);
+        return view('welcome', compact('recentlyCreated'));
+    }
+
     public function shorten(Request $request)
     {
         // Validate the input
@@ -38,5 +53,12 @@ class ShortenController extends Controller
                 'short_code' => $shortCode
             ]);
         }
+    }
+
+    public function index()
+    {
+        $topVisited = ShortenedUrl::orderBy('hits', 'DESC')->take(10)->get(['short_code', 'original_url', 'hits']);
+        $recentlyCreated = ShortenedUrl::orderBy('created_at', 'DESC')->take(10)->get(['short_code', 'original_url', 'created_at']);
+        return view('welcome', compact('topVisited', 'recentlyCreated'));
     }
 }
