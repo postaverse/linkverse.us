@@ -34,23 +34,25 @@ class ShortenController extends Controller
         $existingUrl = ShortenedUrl::where('original_url', $request->original_url)->first();
 
         if ($existingUrl) {
-            // Return the existing short code if found
+            // Return the existing short code and QR URL if found
             return response()->json([
-                'short_code' => $existingUrl->short_code
+                'short_code' => $existingUrl->short_code,
+                'qr_code_url' => url("/qr/{$existingUrl->short_code}")
             ]);
         } else {
             // Generate a unique short code if not found
             $shortCode = Str::random(6);
 
             // Save to database
-            $url = ShortenedUrl::create([
+            ShortenedUrl::create([
                 'original_url' => $request->original_url,
                 'short_code' => $shortCode,
             ]);
 
-            // Return the new short code
+            // Return the new short code and QR URL
             return response()->json([
-                'short_code' => $shortCode
+                'short_code' => $shortCode,
+                'qr_code_url' => url("/qr/{$shortCode}")
             ]);
         }
     }

@@ -17,4 +17,12 @@ class ShortenedUrl extends Model
 
     // Specify if the timestamps are used (created_at and updated_at)
     public $timestamps = false;
+
+    public static function originalUrl($shortUrl)
+    {
+        // First, split the Short URL to get the short code
+        $shortCode = explode('/', $shortUrl);
+        $shortCode = end($shortCode);
+        return self::where('short_code', $shortCode)->value('original_url');
+    }
 }
