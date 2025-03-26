@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- SEO tags -->
     <meta name="description" content="Linkverse is a free URL shortening service.">
-    <meta name="keywords"
-        content="linkverse, url shortener, free url shortener, link shortener, shorten link, shorten url">
+    <meta name="keywords" content="linkverse, url shortener, free url shortener, link shortener, shorten link, shorten url">
     <meta name="author" content="Zander Lewis">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Linkverse">
@@ -22,23 +20,25 @@
     <meta property="og:locale" content="en_US">
     @vite('resources/css/app.css')
     <style>
-        /* Muted grid background for dark mode */
-        .bg-grid-dark {
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 25px 25px;
-        }
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .bg-grid-dark {
+        /* Increased stroke opacity for a more visible grid */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='none' stroke='%23777777' stroke-opacity='0.15' stroke-width='1'/%3E%3C/svg%3E");
+        background-size: 40px 40px;
+        background-repeat: repeat;
+    }
     </style>
 </head>
-
-<body class="font-sans antialiased bg-gray-950 text-gray-200 min-h-screen">
-    <div class="absolute inset-0 bg-grid-dark -z-10"></div>
+<body class="font-sans antialiased bg-gray-950 text-gray-200 min-h-screen bg-grid-dark">
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         @yield('content')
     </div>
-
-    <footer class="mt-16 text-center text-gray-500 text-sm">
+    <footer class="mt-16 pb-8 text-center text-gray-500 text-sm">
         <p>&copy; {{ date('Y') }} Linkverse - Free URL shortening service</p>
     </footer>
 </body>
-
 </html>
