@@ -14,13 +14,13 @@ class ShortenController extends Controller
     public function getTopVisitedShortCodes()
     {
         $topVisited = ShortenedUrl::orderBy('hits', 'DESC')->take(10)->get(['short_code', 'hits', 'original_url']);
-        return view('welcome', compact('topVisited'));
+        return view('home', compact('topVisited'));
     }
 
     public function getRecentlyCreatedShortCodes()
     {
         $recentlyCreated = ShortenedUrl::orderBy('created_at', 'DESC')->take(10)->get(['short_code', 'original_url', 'created_at']);
-        return view('welcome', compact('recentlyCreated'));
+        return view('home', compact('recentlyCreated'));
     }
 
     public function shorten(Request $request)
@@ -59,6 +59,6 @@ class ShortenController extends Controller
     {
         $topVisited = ShortenedUrl::orderBy('hits', 'DESC')->take(10)->get(['short_code', 'original_url', 'hits']);
         $recentlyCreated = ShortenedUrl::orderBy('created_at', 'DESC')->take(10)->get(['short_code', 'original_url', 'created_at']);
-        return view('welcome', compact('topVisited', 'recentlyCreated'));
+        return view('home', compact('topVisited', 'recentlyCreated'));
     }
 }
