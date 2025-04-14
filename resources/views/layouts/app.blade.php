@@ -40,5 +40,12 @@
     <footer class="mt-16 pb-8 text-center text-gray-500 text-sm">
         <p>&copy; {{ date('Y') }} Linkverse - Free URL shortening service</p>
     </footer>
+    <script>
+        // Simple parallax effect for the background
+        window.addEventListener('scroll', function() {
+            var scrollPos = window.pageYOffset;
+            document.querySelector('.bg-grid-dark').style.backgroundPositionY = -(scrollPos * 0.25) + "px";
+        });
+    </script>
 </body>
 </html>
