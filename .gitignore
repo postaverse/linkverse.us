@@ -20,3 +20,4 @@ yarn-error.log
 /.vscode
 # If using SQLite
 linkverse_db
+*.backup
